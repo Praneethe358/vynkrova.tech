@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
 const navLinks = [
+  { name: 'About', href: '#about' },
   { name: 'Services', href: '#services' },
   { name: 'Projects', href: '#projects' },
-  { name: 'About', href: '#about' },
   { name: 'Insights', href: '#insights' },
   { name: 'Contact', href: '#contact' },
 ];
@@ -32,9 +32,11 @@ export default function Navbar() {
         <div className="nav-utility-inner">
           <a href="#services" className="nav-utility-link">AI Automation</a>
           <span className="nav-utility-divider" />
-          <a href="#services" className="nav-utility-link">Web Development</a>
+          <a href="#services" className="nav-utility-link">Fullstack Development</a>
           <span className="nav-utility-divider" />
-          <a href="#services" className="nav-utility-link">Digital Services</a>
+          <a href="#services" className="nav-utility-link">Final Year Projects</a>
+          <span className="nav-utility-divider" />
+          <a href="#services" className="nav-utility-link">Portfolio</a>
         </div>
       </div>
 

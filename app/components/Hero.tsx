@@ -15,6 +15,9 @@ function WireframeTunnel() {
 
     let animId: number;
     let t = 0;
+    let hoverBlend = 0;
+    let mouseX = 0.72;
+    let mouseY = 0.5;
 
     const resize = () => {
       canvas.width = canvas.offsetWidth;
@@ -23,73 +26,171 @@ function WireframeTunnel() {
     resize();
     window.addEventListener('resize', resize);
 
-    const RED = '#e2231a';
+    const handleEnter = () => {
+      hoverBlend = Math.min(1, hoverBlend + 0.2);
+    };
+
+    const handleLeave = () => {
+      hoverBlend = Math.max(0, hoverBlend - 0.2);
+    };
+
+    const handleMove = (event: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      mouseX = (event.clientX - rect.left) / rect.width;
+      mouseY = (event.clientY - rect.top) / rect.height;
+    };
+
+    canvas.addEventListener('mouseenter', handleEnter);
+    canvas.addEventListener('mouseleave', handleLeave);
+    canvas.addEventListener('mousemove', handleMove);
+
+    const rotateX = (p: { x: number; y: number; z: number }, angle: number) => {
+      const cos = Math.cos(angle);
+      const sin = Math.sin(angle);
+      return {
+        x: p.x,
+        y: p.y * cos - p.z * sin,
+        z: p.y * sin + p.z * cos,
+      };
+    };
+
+    const rotateY = (p: { x: number; y: number; z: number }, angle: number) => {
+      const cos = Math.cos(angle);
+      const sin = Math.sin(angle);
+      return {
+        x: p.x * cos + p.z * sin,
+        y: p.y,
+        z: -p.x * sin + p.z * cos,
+      };
+    };
+
+    const rotateZ = (p: { x: number; y: number; z: number }, angle: number) => {
+      const cos = Math.cos(angle);
+      const sin = Math.sin(angle);
+      return {
+        x: p.x * cos - p.y * sin,
+        y: p.x * sin + p.y * cos,
+        z: p.z,
+      };
+    };
+
+    const project = (p: { x: number; y: number; z: number }, fov: number) => {
+      const scale = fov / (p.z + fov);
+      return {
+        x: p.x * scale,
+        y: p.y * scale,
+        z: p.z,
+        scale,
+      };
+    };
 
     function draw() {
       if (!ctx || !canvas) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+      const targetBlend = canvas.matches(':hover') ? 1 : 0;
+      hoverBlend += (targetBlend - hoverBlend) * 0.08;
+
       const cx = canvas.width * 0.72;
-      const cy = canvas.height * 0.5;
-      const layers = 22;
-      const spokes = 28;
+      const cy = canvas.height * 0.48;
+      const fov = 800;
+      const majorRadius = 120 + hoverBlend * 20;
+      const minorRadius = 45 + hoverBlend * 8;
+      const segmentsU = Math.round(32 + hoverBlend * 8);
+      const segmentsV = Math.round(24 + hoverBlend * 4);
 
-      for (let l = 0; l < layers; l++) {
-        const progress = l / (layers - 1);
-        const radius = 20 + progress * Math.min(canvas.width, canvas.height) * 0.7;
-        const alpha = 0.08 + progress * 0.35;
-        const offsetX = Math.sin(t * 0.4 + progress * 1.5) * 8;
-        const offsetY = Math.cos(t * 0.3 + progress * 1.2) * 5;
+      let rotX = t * 0.6 + (mouseY - 0.5) * 0.8;
+      let rotY = t * 0.35 + (mouseX - 0.5) * 1.2;
+      let rotZ = t * 0.15;
 
-        // Concentric ellipses
-        ctx.beginPath();
-        ctx.ellipse(
-          cx + offsetX,
-          cy + offsetY,
-          radius * 0.55,
-          radius * 0.42,
-          -0.15,
-          0,
-          Math.PI * 2
-        );
-        ctx.strokeStyle = `rgba(226,35,26,${alpha})`;
-        ctx.lineWidth = 0.6;
-        ctx.stroke();
+      const points: Array<{
+        x2d: number;
+        y2d: number;
+        z: number;
+        u: number;
+        v: number;
+      }> = [];
 
-        // Spoke lines from center to each ellipse point
-        if (l % 3 === 0) {
-          for (let s = 0; s < spokes; s++) {
-            const angle = (s / spokes) * Math.PI * 2;
-            const ex = cx + offsetX + Math.cos(angle) * radius * 0.55;
-            const ey = cy + offsetY + Math.sin(angle) * radius * 0.42;
+      for (let u = 0; u <= segmentsU; u++) {
+        for (let v = 0; v <= segmentsV; v++) {
+          const uAngle = (u / segmentsU) * Math.PI * 2;
+          const vAngle = (v / segmentsV) * Math.PI * 2;
 
-            ctx.beginPath();
-            ctx.moveTo(cx, cy);
-            ctx.lineTo(ex, ey);
-            ctx.strokeStyle = `rgba(226,35,26,${alpha * 0.55})`;
-            ctx.lineWidth = 0.4;
-            ctx.stroke();
-          }
+          const x = (majorRadius + minorRadius * Math.cos(vAngle)) * Math.cos(uAngle);
+          const y = minorRadius * Math.sin(vAngle);
+          const z = (majorRadius + minorRadius * Math.cos(vAngle)) * Math.sin(uAngle);
+
+          let p = { x, y, z };
+          p = rotateX(p, rotX);
+          p = rotateY(p, rotY);
+          p = rotateZ(p, rotZ);
+
+          const proj = project(p, fov);
+          points.push({
+            x2d: cx + proj.x,
+            y2d: cy + proj.y,
+            z: proj.z,
+            u,
+            v,
+          });
         }
       }
 
-      // Bright focal point
-      const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 60);
-      grad.addColorStop(0, 'rgba(226,35,26,0.55)');
-      grad.addColorStop(0.4, 'rgba(226,35,26,0.12)');
-      grad.addColorStop(1, 'rgba(226,35,26,0)');
+      // Draw U-direction lines (poloidal) with flowing animation
+      ctx.strokeStyle = 'rgba(226, 35, 26, 0.6)';
+      ctx.lineWidth = 0.8;
+      for (let u = 0; u <= segmentsU; u += 2) {
+        ctx.beginPath();
+        let first = true;
+        for (let v = 0; v <= segmentsV; v++) {
+          const phaseShift = ((t * 60 + u * 3.2) % segmentsV);
+          const idx = u * (segmentsV + 1) + ((v + Math.floor(phaseShift)) % segmentsV);
+          const pt = points[idx];
+          if (first) {
+            ctx.moveTo(pt.x2d, pt.y2d);
+            first = false;
+          } else {
+            ctx.lineTo(pt.x2d, pt.y2d);
+          }
+        }
+        ctx.stroke();
+      }
+
+      // Draw V-direction lines (toroidal) with flowing animation
+      for (let v = 0; v <= segmentsV; v += 2) {
+        ctx.beginPath();
+        let first = true;
+        for (let u = 0; u <= segmentsU; u++) {
+          const phaseShift = ((t * 45 + v * 2.8) % segmentsU);
+          const idx = ((u + Math.floor(phaseShift)) % segmentsU) * (segmentsV + 1) + v;
+          const pt = points[idx];
+          if (first) {
+            ctx.moveTo(pt.x2d, pt.y2d);
+            first = false;
+          } else {
+            ctx.lineTo(pt.x2d, pt.y2d);
+          }
+        }
+        ctx.stroke();
+      }
+
+      // Highlight glow
+      ctx.fillStyle = 'rgba(226, 35, 26, 0.15)';
       ctx.beginPath();
-      ctx.arc(cx, cy, 60, 0, Math.PI * 2);
-      ctx.fillStyle = grad;
+      ctx.arc(cx, cy, majorRadius * 0.5, 0, Math.PI * 2);
       ctx.fill();
 
-      t += 0.012;
+      t += 0.016 + hoverBlend * 0.008;
       animId = requestAnimationFrame(draw);
     }
 
     draw();
     return () => {
       cancelAnimationFrame(animId);
+      canvas.removeEventListener('mouseenter', handleEnter);
+      canvas.removeEventListener('mouseleave', handleLeave);
+      canvas.removeEventListener('mousemove', handleMove);
       window.removeEventListener('resize', resize);
     };
   }, []);

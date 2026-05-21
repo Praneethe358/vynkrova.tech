@@ -174,7 +174,7 @@ export default function Overview() {
               viewport={{ once: true, margin: '-60px' }}
               custom={0}
             >
-              Overview
+              About
             </motion.span>
 
             <motion.h2
@@ -255,7 +255,7 @@ export default function Overview() {
             viewport={{ once: true, margin: '-60px' }}
             custom={0}
           >
-            <span className="ov-label">Capabilities</span>
+            <span className="ov-label">Services</span>
             <h3 className="ov-deliver-heading">What I Deliver</h3>
             <p className="ov-deliver-sub">
               End-to-end solutions engineered for performance, reliability, and scale.

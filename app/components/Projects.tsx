@@ -259,7 +259,7 @@ export default function Projects() {
             viewport={{ once: true, margin: '-60px' }}
             custom={0}
           >
-            Selected Work
+            Projects
           </motion.span>
 
           <motion.h2
