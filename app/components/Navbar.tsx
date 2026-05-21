@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 const navLinks = [
   { name: 'Services', href: '#services' },
@@ -29,11 +30,11 @@ export default function Navbar() {
       {/* Top utility bar */}
       <div className="nav-utility-bar">
         <div className="nav-utility-inner">
-          <a href="" className="nav-utility-link">Ai Automation</a>
+          <a href="#services" className="nav-utility-link">AI Automation</a>
           <span className="nav-utility-divider" />
-          <a href="" className="nav-utility-link">Web Development</a>
+          <a href="#services" className="nav-utility-link">Web Development</a>
           <span className="nav-utility-divider" />
-          <a href="" className="nav-utility-link">Digital Services</a>
+          <a href="#services" className="nav-utility-link">Digital Services</a>
         </div>
       </div>
 
@@ -46,12 +47,22 @@ export default function Navbar() {
       >
         <div className="nav-inner">
           {/* Logo */}
-          <a href="#home" className="nav-logo" aria-label="Home">
-            <span className="nav-logo-mark">V</span>
-            <span className="nav-logo-text">ynkrova Tech</span>
+          <a href="#home" className="nav-logo" aria-label="Vynkrova Tech Home">
+            <Image
+              src="/logo-icon.png"
+              alt=""
+              width={36}
+              height={36}
+              style={{ objectFit: 'contain', borderRadius: 7 }}
+              priority
+            />
+            <span className="nav-logo-wordmark">
+              <span className="nav-logo-v">V</span>
+              <span className="nav-logo-name">ynkrova Tech</span>
+            </span>
           </a>
 
-          {/* Desktop links */}
+          {/* Desktop links — pushed right */}
           <div className="nav-links-desktop">
             {navLinks.map((link) => (
               <a key={link.name} href={link.href} className="nav-link">
@@ -138,7 +149,7 @@ export default function Navbar() {
                 ))}
               </div>
               <div className="mobile-panel-footer">
-                <p>© 2025 Praneeth</p>
+                <p>&copy; 2026 Vynkrova Tech</p>
               </div>
             </motion.div>
           </motion.div>
