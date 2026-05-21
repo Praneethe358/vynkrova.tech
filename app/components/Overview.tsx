@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import { motion, useInView, useMotionValue, useTransform, useSpring } from 'framer-motion';
+import { motion, useInView, useMotionValue, useTransform, useSpring, cubicBezier } from 'framer-motion';
 
 /* ─── Animated counter hook ─── */
 function useAnimatedCounter(target: number, duration = 2000, inView: boolean) {
@@ -35,7 +35,7 @@ const fadeUp = {
   visible: (delay: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.7, delay, ease: cubicBezier(0.22, 1, 0.36, 1) },
   }),
 };
 
@@ -52,7 +52,7 @@ const cardVariant = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.6, ease: cubicBezier(0.22, 1, 0.36, 1) },
   },
 };
 

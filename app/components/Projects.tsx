@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, cubicBezier } from 'framer-motion';
 import Image from 'next/image';
 
 /* ─── Animation variants (matching Overview) ─── */
@@ -10,7 +10,7 @@ const fadeUp = {
   visible: (delay: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.7, delay, ease: cubicBezier(0.22, 1, 0.36, 1) },
   }),
 };
 
@@ -27,7 +27,7 @@ const cardVariant = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.6, ease: cubicBezier(0.22, 1, 0.36, 1) },
   },
 };
 
