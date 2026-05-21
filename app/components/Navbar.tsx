@@ -34,9 +34,9 @@ export default function Navbar() {
           <span className="nav-utility-divider" />
           <a href="#services" className="nav-utility-link">Fullstack Development</a>
           <span className="nav-utility-divider" />
-          <a href="#services" className="nav-utility-link">Final Year Projects</a>
-          <span className="nav-utility-divider" />
           <a href="#services" className="nav-utility-link">Portfolio</a>
+          <span className="nav-utility-divider" />
+          <a href="#services" className="nav-utility-link">Google Mapping Services</a>
         </div>
       </div>
 

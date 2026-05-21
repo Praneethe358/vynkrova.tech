@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, cubicBezier } from 'framer-motion';
 
 /* ─── Geometric wireframe canvas (tunnel vortex like Kyndryl) ─── */
 function WireframeTunnel() {
@@ -210,7 +210,7 @@ const fadeUp = (delay = 0) => ({
   animate: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.7, delay, ease: cubicBezier(0.22, 1, 0.36, 1) },
   },
 });
 
