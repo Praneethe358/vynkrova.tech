@@ -155,20 +155,6 @@ export default function Hero() {
           </a>
         </motion.div>
       </div>
-
-      {/* Bottom sticky nav (like Kyndryl section tabs) */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.9 }}
-        className="hero-bottom-nav"
-      >
-        {['Overview', 'Services', 'Capabilities', 'Projects', 'Connect'].map((item) => (
-          <a key={item} href={`#${item.toLowerCase()}`} className="hero-bottom-nav-link">
-            {item}
-          </a>
-        ))}
-      </motion.div>
     </section>
   );
 }

@@ -472,3 +472,520 @@ body {
     );
   }
 }
+
+
+/* ══════════════════════════════════════════
+   OVERVIEW / ABOUT
+══════════════════════════════════════════ */
+
+.ov-section {
+  position: relative;
+  background: #141414;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Gradient dividers at top & bottom */
+.ov-top-divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(226, 35, 26, 0.3) 30%,
+    rgba(226, 35, 26, 0.5) 50%,
+    rgba(226, 35, 26, 0.3) 70%,
+    transparent 100%
+  );
+}
+.ov-bottom-divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255,255,255,0.06) 30%,
+    rgba(255,255,255,0.1) 50%,
+    rgba(255,255,255,0.06) 70%,
+    transparent 100%
+  );
+}
+
+/* Container */
+.ov-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ─── Label (small intro tag) ─── */
+.ov-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #e2231a;
+  margin-bottom: 20px;
+  position: relative;
+  padding-left: 20px;
+}
+.ov-label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 1px;
+  background: #e2231a;
+}
+
+/* ─── Intro grid (text + visual) ─── */
+.ov-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding: 100px 0 80px;
+}
+
+.ov-intro-text {
+  max-width: 560px;
+}
+
+.ov-heading {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0 0 28px;
+}
+.ov-heading-accent {
+  color: #e2231a;
+  font-weight: 300;
+}
+
+.ov-description {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.6);
+  margin: 0;
+}
+
+.ov-separator {
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(to right, #e2231a, transparent);
+  margin-top: 36px;
+}
+
+/* ─── Floating visual composition ─── */
+.ov-intro-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+}
+
+.ov-visual-container {
+  position: relative;
+  width: 100%;
+  height: 420px;
+}
+
+/* Shared float card */
+.ov-float-card {
+  position: absolute;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.ov-float-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.ov-float-dots {
+  display: flex;
+  gap: 5px;
+}
+.ov-float-dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+}
+.ov-float-dots span:first-child { background: rgba(226,35,26,0.5); }
+
+.ov-float-title {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  font-family: monospace;
+}
+
+.ov-float-body {
+  padding: 16px;
+}
+
+/* Dashboard card */
+.ov-float-dashboard {
+  top: 0;
+  left: 0;
+  width: 260px;
+  background: rgba(30,30,30,0.85);
+  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 3;
+}
+
+.ov-chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 80px;
+  padding-top: 4px;
+}
+.ov-chart-bar {
+  flex: 1;
+  background: linear-gradient(to top, rgba(226,35,26,0.7), rgba(226,35,26,0.25));
+  border-radius: 3px 3px 0 0;
+  min-height: 4px;
+}
+.ov-chart-label {
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  margin-top: 10px;
+  letter-spacing: 0.04em;
+}
+
+/* Code card */
+.ov-float-code {
+  top: 60px;
+  right: 0;
+  width: 240px;
+  background: rgba(20,20,20,0.9);
+  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 4;
+}
+
+.ov-code-body {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.5);
+}
+.ov-code-kw { color: rgba(226,35,26,0.85); }
+.ov-code-fn { color: rgba(255,255,255,0.8); }
+.ov-code-str { color: rgba(120,200,140,0.75); }
+
+/* Status badge */
+.ov-float-status {
+  bottom: 80px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(30,30,30,0.85);
+  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  z-index: 5;
+}
+.ov-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 8px rgba(52,211,153,0.4);
+  animation: ov-pulse 2s ease-in-out infinite;
+}
+@keyframes ov-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
+/* Flow diagram card */
+.ov-float-flow {
+  bottom: 10px;
+  right: 10px;
+  padding: 14px 18px;
+  background: rgba(25,25,25,0.9);
+  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 4;
+}
+
+.ov-flow-nodes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ov-flow-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.45);
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.ov-flow-node-active {
+  border-color: rgba(226,35,26,0.35);
+  color: #e2231a;
+  background: rgba(226,35,26,0.06);
+}
+.ov-flow-arrow {
+  color: rgba(255,255,255,0.2);
+  font-size: 14px;
+}
+
+/* ─── Feature Cards Grid ─── */
+.ov-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px 0 100px;
+}
+
+.ov-card {
+  position: relative;
+  padding: 36px 28px 32px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  overflow: hidden;
+  cursor: default;
+  transition: border-color 0.35s ease, background 0.35s ease;
+}
+.ov-card:hover {
+  border-color: rgba(226,35,26,0.25);
+  background: rgba(255,255,255,0.04);
+}
+
+/* Shine overlay on hover */
+.ov-card-shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(226,35,26,0.04) 0%,
+    transparent 40%,
+    transparent 60%,
+    rgba(226,35,26,0.02) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.ov-card:hover .ov-card-shine { opacity: 1; }
+
+.ov-card-icon {
+  color: #e2231a;
+  margin-bottom: 20px;
+  opacity: 0.85;
+}
+
+.ov-card-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+
+.ov-card-desc {
+  font-size: 13.5px;
+  font-weight: 300;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.5);
+  margin: 0;
+}
+
+/* ─── What I Deliver ─── */
+.ov-deliver-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+  padding: 0 0 100px;
+}
+
+.ov-deliver-heading {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 300;
+  color: #ffffff;
+  margin: 0 0 16px;
+  letter-spacing: -0.015em;
+}
+
+.ov-deliver-sub {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 380px;
+}
+
+.ov-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ov-check-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.75);
+  transition: color 0.25s;
+}
+.ov-check-item:first-child {
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.ov-check-item:hover {
+  color: #ffffff;
+}
+
+.ov-check-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(226,35,26,0.1);
+  color: #e2231a;
+  flex-shrink: 0;
+}
+
+/* ─── Metrics Strip ─── */
+.ov-metrics-strip {
+  background: rgba(255,255,255,0.02);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 64px 0;
+}
+
+.ov-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.ov-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+/* Vertical dividers between metrics */
+.ov-metric:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background: rgba(255,255,255,0.07);
+}
+
+.ov-metric-value {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.ov-metric-suffix {
+  color: #e2231a;
+  font-weight: 300;
+}
+
+.ov-metric-label {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.4);
+  margin-top: 10px;
+  letter-spacing: 0.02em;
+}
+
+
+/* ─── Responsive Overview ─── */
+@media (max-width: 1024px) {
+  .ov-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ov-intro-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .ov-intro-visual {
+    min-height: 340px;
+  }
+  .ov-deliver-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ov-container { padding: 0 20px; }
+  .ov-intro-grid { padding: 64px 0 48px; }
+  .ov-cards-grid {
+    grid-template-columns: 1fr;
+    padding: 0 0 64px;
+  }
+  .ov-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+  .ov-metric:not(:last-child)::after { display: none; }
+  .ov-metrics-strip { padding: 48px 0; }
+  .ov-deliver-grid { padding: 0 0 64px; }
+
+  /* Hide floating visuals on mobile */
+  .ov-intro-visual { display: none; }
+
+  .ov-heading {
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .ov-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+  .ov-card {
+    padding: 28px 20px;
+  }
+}
