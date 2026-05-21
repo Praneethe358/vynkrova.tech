@@ -29,9 +29,11 @@ export default function Navbar() {
       {/* Top utility bar */}
       <div className="nav-utility-bar">
         <div className="nav-utility-inner">
-          <a href="#contact" className="nav-utility-link">Hire Me</a>
+          <a href="" className="nav-utility-link">Ai Automation</a>
           <span className="nav-utility-divider" />
-          <a href="#about" className="nav-utility-link">Resume</a>
+          <a href="" className="nav-utility-link">Web Development</a>
+          <span className="nav-utility-divider" />
+          <a href="" className="nav-utility-link">Digital Services</a>
         </div>
       </div>
 
@@ -45,8 +47,8 @@ export default function Navbar() {
         <div className="nav-inner">
           {/* Logo */}
           <a href="#home" className="nav-logo" aria-label="Home">
-            <span className="nav-logo-mark">P</span>
-            <span className="nav-logo-text">raneeth</span>
+            <span className="nav-logo-mark">V</span>
+            <span className="nav-logo-text">ynkrova Tech</span>
           </a>
 
           {/* Desktop links */}
