@@ -79,10 +79,6 @@ export default function Footer() {
                   </a>
                 ))}
               </div>
-              <div className="ft-avail-badge">
-                <span className="ft-avail-dot" />
-                Available for new projects
-              </div>
             </motion.div>
 
             {/* Navigation column */}
