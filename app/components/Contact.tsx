@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { motion, cubicBezier } from 'framer-motion';
 
 const fadeUp = {
@@ -40,12 +40,7 @@ const channels = [
   },
 ];
 
-const processSteps = [
-  { num: '01', title: 'Discovery Call', desc: 'Free 30-min consultation to understand your goals.' },
-  { num: '02', title: 'Proposal & Scope', desc: 'Detailed plan, timeline, and transparent pricing in 48 h.' },
-  { num: '03', title: 'Build & Iterate', desc: 'Agile sprints with weekly demos and your feedback.' },
-  { num: '04', title: 'Deploy & Support', desc: 'Production launch plus 30-day post-delivery support.' },
-];
+
 
 export default function Contact() {
   const [formState, setFormState] = useState<'idle' | 'sending' | 'sent'>('idle');
@@ -178,23 +173,6 @@ export default function Contact() {
               </div>
             </motion.div>
 
-            <motion.div className="ct-availability" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }} custom={0.3}>
-              <span className="ct-avail-dot" />
-              <span className="ct-avail-text"><strong>Currently accepting new projects</strong> — typical start within 2 weeks</span>
-            </motion.div>
-
-            <motion.div className="ct-process" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }} custom={0.4}>
-              <p className="ct-info-section-label" style={{ marginBottom: '20px' }}>What to expect</p>
-              {processSteps.map(step => (
-                <div key={step.num} className="ct-process-step">
-                  <span className="ct-process-num">{step.num}</span>
-                  <div className="ct-process-body">
-                    <span className="ct-process-title">{step.title}</span>
-                    <span className="ct-process-desc">{step.desc}</span>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
           </div>
         </div>
       </div>
