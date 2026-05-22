@@ -147,7 +147,10 @@ function MetricItem({ value, suffix, label }: { value: number; suffix: string; l
       <span className="ov-metric-label">{label}</span>
     </motion.div>
   );
+ 
+
 }
+
 
 /* ══════════════════════════════════════════
    OVERVIEW SECTION
