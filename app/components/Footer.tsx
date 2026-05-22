@@ -155,9 +155,6 @@ export default function Footer() {
             <p className="ft-copyright">
               © {year} Vynkrova Tech. All rights reserved.
             </p>
-            <p className="ft-built-with">
-              Built with <span className="ft-heart">♥</span> using Next.js &amp; AI
-            </p>
           </div>
         </div>
       </div>
