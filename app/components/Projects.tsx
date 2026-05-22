@@ -112,7 +112,7 @@ const projects: Project[] = [
   },
 ];
 
-/* ─── Featured Project Card ─── */
+/* ─── Featured Project Card (compact) ─── */
 function FeaturedCard({ project }: { project: Project }) {
   return (
     <motion.div
@@ -120,7 +120,7 @@ function FeaturedCard({ project }: { project: Project }) {
       variants={cardVariant}
       whileHover={{ y: -4, transition: { duration: 0.3 } }}
     >
-      {/* Image — uses fill with a fixed-ratio container */}
+      {/* Image */}
       <div className="pj-featured-img-wrap">
         <Image
           src={project.image}
@@ -136,31 +136,16 @@ function FeaturedCard({ project }: { project: Project }) {
       {/* Content */}
       <div className="pj-featured-content">
         <h3 className="pj-card-title">{project.title}</h3>
-        <p className="pj-card-desc">{project.description}</p>
+        <p className="pj-card-desc pj-card-desc--clamp">{project.description}</p>
 
-        {/* Challenge → Solution → Impact */}
-        {project.challenge && (
-          <div className="pj-case-study">
-            <div className="pj-case-row">
-              <div className="pj-case-item">
-                <span className="pj-case-label">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><circle cx="12" cy="12" r="10" /><path d="M12 8v4M12 16h.01" /></svg>
-                  Challenge
-                </span>
-                <p className="pj-case-text">{project.challenge}</p>
-              </div>
-              <div className="pj-case-item">
-                <span className="pj-case-label">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" /></svg>
-                  Solution
-                </span>
-                <p className="pj-case-text">{project.solution}</p>
-              </div>
-            </div>
-            <div className="pj-case-impact-bar">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" /></svg>
-              <span>{project.impact}</span>
-            </div>
+        {/* Impact badge */}
+        {project.impact && (
+          <div className="pj-impact-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+              <polyline points="17 6 23 6 23 12" />
+            </svg>
+            <span>{project.impact}</span>
           </div>
         )}
 
@@ -182,7 +167,7 @@ function FeaturedCard({ project }: { project: Project }) {
               >
                 {link.label}
                 {i === 0 && (
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
                 )}
@@ -196,6 +181,7 @@ function FeaturedCard({ project }: { project: Project }) {
     </motion.div>
   );
 }
+
 
 /* ─── Standard Project Card ─── */
 function ProjectCard({ project }: { project: Project }) {

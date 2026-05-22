@@ -2434,3 +2434,40 @@ body {
 }
 
 
+/* ─── Featured project cards — compact sizing ─── */
+.pj-featured-img-wrap { aspect-ratio: 16 / 8 !important; }
+.pj-featured-content  { padding: 16px 18px 18px !important; }
+
+/* Clip description to 2 lines */
+.pj-card-desc--clamp {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  margin-bottom: 10px !important;
+}
+
+/* Compact impact badge */
+.pj-impact-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  margin-bottom: 12px;
+  background: rgba(226,35,26,0.06);
+  border: 1px solid rgba(226,35,26,0.15);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #e2231a;
+  letter-spacing: 0.01em;
+}
+.pj-impact-badge svg { opacity: 0.8; flex-shrink: 0; }
+
+.pj-featured-card .pj-card-title  { font-size: 15px !important; margin-bottom: 6px !important; }
+.pj-featured-card .pj-tech-tags   { margin-bottom: 10px !important; gap: 5px !important; }
+.pj-featured-card .pj-tech-tag    { padding: 3px 9px !important; font-size: 10.5px !important; }
+.pj-featured-card .pj-card-links  { padding-top: 0 !important; gap: 8px !important; }
+.pj-featured-card .pj-link-primary,
+.pj-featured-card .pj-link-secondary { padding: 7px 16px !important; font-size: 12.5px !important; }
+
