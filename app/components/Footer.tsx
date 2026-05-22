@@ -49,35 +49,6 @@ export default function Footer() {
 
   return (
     <footer className="ft-footer">
-      {/* Top CTA banner */}
-      <div className="ft-cta-band">
-        <div className="ft-cta-glow" aria-hidden="true" />
-        <div className="ft-container">
-          <motion.div
-            className="ft-cta-inner"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            custom={0}
-          >
-            <div className="ft-cta-text">
-              <h3 className="ft-cta-heading">Ready to start your project?</h3>
-              <p className="ft-cta-sub">Let&apos;s discuss your requirements and build something remarkable together.</p>
-            </div>
-            <div className="ft-cta-actions">
-              <a href="#contact" className="ft-cta-btn-primary">
-                Get in Touch
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-              <a href="mailto:hello@vynkrova.tech" className="ft-cta-btn-secondary">
-                hello@vynkrova.tech
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
       {/* Main footer body */}
       <div className="ft-body">
         <div className="ft-container">
