@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
   },
   openGraph: {
-    title: "Vynkrova Tech | AI Automation & Full Stack Development",
+    title: "Vynkrova Tech | AI Automation | Full Stack Development",
     description:
       "Building intelligent digital experiences for modern businesses.",
     type: "website",
