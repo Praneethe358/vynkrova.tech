@@ -7,13 +7,24 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <div style={{ background: '#141414', minHeight: '100vh' }}>
-      <Navbar />
-      <Hero />
-      <Overview />
-      <Projects />
-      <Contact />
+    <>
+      {/* Semantic header landmark wrapping the navbar */}
+      <header>
+        <Navbar />
+      </header>
+
+      {/* Main content landmark */}
+      <main
+        id="main-content"
+        style={{ background: "#141414", minHeight: "100vh" }}
+      >
+        <Hero />
+        <Overview />
+        <Projects />
+        <Contact />
+      </main>
+
       <Footer />
-    </div>
+    </>
   );
 }
